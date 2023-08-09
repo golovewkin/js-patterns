@@ -7,17 +7,32 @@ class Input {
 }
 
 export class TextInput extends Input {
-  // todo: implement logic
+  create () {
+
+  }
 }
 
 export class NumberInput extends Input {
-  // todo: implement logic
+  create () {
+
+  }
 }
 
 export class EmailInput extends Input {
-  // todo: implement logic
+  create () {
+
+  }
 }
 
 export const inputFactory = (type = '') => {
-  // todo: implement logic
+  switch (type) {
+    case 'text':
+      return new TextInput();
+    case 'number':
+      return new NumberInput();
+    case 'email':
+      return new EmailInput();
+    default:
+      throw new Error('type is unknown');
+  }
 };
