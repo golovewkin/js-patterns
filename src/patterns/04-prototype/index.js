@@ -27,7 +27,6 @@ export default class Location {
 
   setMonstersSettings(monstersSettings) {
     this.monstersSettings = monstersSettings;
-    debugger
     this.monsters = this.initMonsters(this.monsters.length, monstersSettings);
   }
 }
