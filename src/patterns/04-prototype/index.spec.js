@@ -13,7 +13,7 @@ describe('patterns/prototype', () => {
     const newLocation = location.clone();
 
     newLocation.name = "laveCavern";
-    newLocation.monstersSettings.type = "demon";
+    newLocation.setMonstersSettings({ type: "demon" });
 
     expect(newLocation.monsters.every(monster => monster.settings.type === 'demon')). toBeTruthy();
     expect(location.monsters.every(monster => monster.settings.type === 'undead')). toBeTruthy();
