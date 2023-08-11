@@ -1,17 +1,26 @@
 class Handler {
   name = '';
   regExp = /./;
+  handlers = [];
+  currentHandler = 0;
 
   setNext (handler) {
-    // todo: implement
+    this.handlers.push(handler);
+    this.currentHandler++;
+    return this;
   }
 
   next (data) {
-    // todo: implement
+    this.handlers[this.currentHandler].validate(data);
+
   }
 
   validate (data) {
-    // todo: implement
+    if(!data.match(this.regExp)) {
+      return `Validation rule \"${this.name}\" didn\'t pass for string "${data}"`
+    }
+
+    return this.next(data);
   }
 }
 
