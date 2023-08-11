@@ -36,6 +36,6 @@ describe('patterns/flyweight', () => {
     }
 
     expect(store.products.length).toBe(3);
-    expect(Object.keys(store.flyweights).length).toBe(2);
+    expect(store.flyweights.length).toBe(2);
   });
 });
