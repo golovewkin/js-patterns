@@ -1,12 +1,20 @@
 export class NextPage {
+  pagination;
+  constructor(pagination) {
+    this.pagination = pagination;
+  }
   execute () {
-    // todo: add implementation
+    this.pagination.nextPage();
   }
 }
 
 export class PrevPage {
+  pagination;
+  constructor(pagination) {
+    this.pagination = pagination;
+  }
   execute () {
-    // todo: add implementation
+    this.pagination.prevPage();
   }
 }
 
@@ -23,11 +31,12 @@ export class Pagination {
 }
 
 export class Button {
+  command;
   constructor (command) {
-    // todo: add implementation
+    this.command = command;
   }
 
   click () {
-    // todo: add implementation
+    this.command.execute();
   }
 }

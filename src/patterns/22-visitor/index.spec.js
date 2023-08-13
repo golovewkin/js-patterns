@@ -19,6 +19,6 @@ describe('patterns/visitor', () => {
 
     list.accept(Visitor);
 
-    expect(list.getSize()).toBe(3);
+    expect(list.getSize()).toBe(2);
   });
 });

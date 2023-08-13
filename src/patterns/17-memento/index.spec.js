@@ -1,21 +1,21 @@
-import { Hero, History } from './index.js';
+import { Hero, Memento } from './index.js';
 
 describe('patterns/memento', () => {
-  let history;
+  let memento;
   let hero;
 
   beforeEach(() => {
-    history = new History();
-    hero = new Hero('Superman', history);
+    hero = new Hero('Superman');
+    memento = new Memento(hero);
   });
 
   afterEach(() => {
-    history = null;
+    memento = null;
     hero = null;
   });
 
   it('should be able to store the object state', () => {
-    const snapshot1 = hero.save();
+    const snapshot1 = memento.save();
 
     hero.addSkill('fly');
     hero.increaseLevel();
@@ -23,7 +23,7 @@ describe('patterns/memento', () => {
     expect(hero.state.skills.includes('fly')). toBeTruthy();
     expect(hero.state.level).toBe(2);
 
-    hero.load(snapshot1);
+    memento.load(snapshot1);
 
     expect(hero.state.skills.includes('fly')).toBeFalsy();
     expect(hero.state.level).toBe(1);

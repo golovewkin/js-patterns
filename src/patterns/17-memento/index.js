@@ -1,9 +1,34 @@
+//TODO implement v2
 export class Memento {
-  // todo: add implementation
+  #snapshots = [];
+  #hero
+  constructor(hero) {
+    this.#hero = hero;
+  }
+
+  save(snapshot){
+    this.#snapshots.push(snapshot);
+  }
+
+  load(snapshot) {
+    const snapshotData = snapshot.getSnapshotData();
+    this.#hero.setLevel(snapshot.level);
+    this.#hero.setSkills(snapshot.skills);
+  }
 }
 
-export class History {
-  // todo: add implementation
+export class Snapshot {
+  #level;
+  #skills;
+
+  constructor(level, skills) {
+    this.#level = level;
+    this.#skills = skills;
+  }
+
+  getSnapshotData(){
+    return {level: this.#level, skills: this.#skills};
+  }
 }
 
 export class Hero {
@@ -14,9 +39,8 @@ export class Hero {
     skills: [],
   };
 
-  constructor(name = '', history = {}) {
+  constructor(name = '', memento) {
     this.#name = name;
-    this.history = history;
   }
 
   get state () {
@@ -31,11 +55,11 @@ export class Hero {
     this.#state.level += 1;
   }
 
-  load (snapshot = {}) {
-    // todo: add implementation
+  setLevel (level) {
+    this.#state.level = level;
   }
 
-  save () {
-    // todo: add implementation
+  setSkills (skills) {
+    this.#state.skills = skills;
   }
 }

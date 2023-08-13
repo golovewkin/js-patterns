@@ -11,7 +11,7 @@ describe('patterns/observer', () => {
 
     channel.notify("hello everyone");
 
-    expect(john.messagesHistory.at(-1)).toBe("hello everyone");
-    expect(peter.messagesHistory.at(-1)).toBe("hello everyone");
+    expect(john.messagesHistory[0]).toBe("hello everyone");
+    expect(peter.messagesHistory[0]).toBe("hello everyone");
   });
 });

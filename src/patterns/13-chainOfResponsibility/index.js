@@ -3,15 +3,22 @@ class Handler {
   regExp = /./;
 
   setNext (handler) {
-    // todo: implement
+    this.handler = handler;
+    return handler;
   }
 
   next (data) {
-    // todo: implement
+    if(this.handler) {
+      return this.handler.validate(data);
+    }
   }
 
   validate (data) {
-    // todo: implement
+    if(!this.regExp.test(data)) {
+      return `Validation rule \"${this.name}\" didn\'t pass for string "${data}"`
+    }
+
+    return this.next(data);
   }
 }
 

@@ -1,3 +1,4 @@
+//TODO implement v2
 export class BillSharing {
   participants = [];
   balance = 0;
@@ -7,7 +8,7 @@ export class BillSharing {
   }
 
   addParticipant (participant) {
-    // todo: add implementation
+    this.participants.push(participant);
   }
 
   getPaymentAmount() {
@@ -19,11 +20,31 @@ export class BillSharing {
   }
 
   share () {
-    // todo: add implementation
+    const paymentAmount = this.getPaymentAmount();
+    this.participants.forEach(participant => {
+      if(participant.cash >= paymentAmount) {
+        this.pay(participant.pay(paymentAmount));
+      } else {
+        this.borrow(paymentAmount - participant.cash, participant.name);
+      }
+    });
   }
 
-  borrow (amount = 0) {
-    // todo: add implementation
+  borrow (amount = 0, borrowerName) {
+    const borrowAmount = amount / this.participants.length;
+    const borrower = this.participants.find(participant => participant.name === borrowerName);
+    this.participants.forEach(participant => {
+      if(participant.name === borrowerName ) {
+        return;
+      }
+
+      if(participant.cash >= borrowAmount) {
+        borrower.cash = borrower.cash + borrowAmount;
+        participant.cash = participant.cash - borrowAmount;
+      } else {
+        // TODO
+      }
+    })
   }
 }
 
@@ -31,14 +52,10 @@ export class User {
   constructor(name = '', cash = 0, billSharing) {
     this.name = name;
     this.cash = cash;
-    this.billSharing = billSharing;
   }
 
-  pay () {
-    // todo: add implementation
-  }
-
-  borrow (amount = 0) {
-    // todo: add implementation
+  pay (paymentAmount) {
+    this.cash = this.cash - paymentAmount;
+    return this.cash;
   }
 }

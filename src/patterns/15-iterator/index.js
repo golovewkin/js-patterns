@@ -5,11 +5,16 @@ export class Range {
   }
 
   forEach (callback) {
-    // todo: add implementation
+    this.getRange().forEach(callback);
   }
 
   getRange () {
-    // todo: add implementation
+    const res = [];
+    for (let i = this.start; i <= this.end; i++) {
+      res.push(i);
+    }
+
+    return res;
   }
 }
 
