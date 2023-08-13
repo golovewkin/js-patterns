@@ -1,4 +1,4 @@
-//TODO implement
+//TODO implement v2
 class State {
   currentState;
   constructor(clock) {

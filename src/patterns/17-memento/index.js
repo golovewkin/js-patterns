@@ -1,4 +1,4 @@
-//TODO implement
+//TODO implement v2
 export class Memento {
   #snapshots = [];
   #hero

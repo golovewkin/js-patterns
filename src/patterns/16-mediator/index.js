@@ -1,4 +1,4 @@
-//TODO implement
+//TODO implement v2
 export class BillSharing {
   participants = [];
   balance = 0;
@@ -57,9 +57,5 @@ export class User {
   pay (paymentAmount) {
     this.cash = this.cash - paymentAmount;
     return this.cash;
-  }
-
-  borrow (amount = 0) {
-    // todo: add implementation
   }
 }

@@ -1,3 +1,4 @@
+//TODO implement v2
 export class Visitor {
   constructor(compositeItem) {
     this.compositeItem = compositeItem;
