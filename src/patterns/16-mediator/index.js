@@ -1,3 +1,4 @@
+//TODO implement
 export class BillSharing {
   participants = [];
   balance = 0;

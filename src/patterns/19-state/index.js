@@ -1,3 +1,4 @@
+//TODO implement
 class State {
   currentState;
   constructor(clock) {
