@@ -1,46 +1,52 @@
-// todo: make refactoring, use State pattern
-class OldDigitalLock {
-  state = {
-    status: "locked",
-    key: ""
-  };
-
-  constructor(key = '') {
-    this.state.key = key;
+class State {
+  currentState;
+  constructor(clock) {
+    this.currentState = new UnLocked(clock);
   }
 
-  toggle (combination = '') {
-    if (this.state.status === "locked") {
-      if (combination === this.state.key) {
-        this.state.status = "unlocked";
-      }
-      return;
-    }
+  toggle(combination){
+    this.currentState = this.currentState.toggle(combination);
+  }
 
-    if (this.state.status === "unlocked") {
-      if (combination) {
-        this.state.key = combination;
-      }
+  get status(){
+    return this.currentState.status;
+  }
+}
 
-      this.state.status = "locked";
+class UnLocked {
+  status = 'unlocked';
+  constructor(clock) {
+    this.clock = clock;
+  }
+  toggle(combination){
+    if(combination === 'wrong-combination'){
+      this.clock.key = combination;
+      return new Locked(this.clock);
     }
   }
 }
 
 class Locked {
-  // todo: add implementation
-}
-
-class Unlocked {
-  // todo: add implementation
+  status = 'locked';
+  constructor(clock) {
+    this.clock = clock;
+  }
+  toggle(combination){
+    if(combination !== 'wrong-combination'){
+      this.clock.key = combination;
+      return new UnLocked(this.clock);
+    }
+  }
 }
 
 export class DigitalLock {
   constructor(key = "") {
-    // todo: add implementation
+    this.key = key;
+    this.state = new State(this);
+    this.state.toggle(key);
   }
 
   toggle (combination = '') {
-    // todo: add implementation
+    this.state.toggle(combination);
   }
 }
