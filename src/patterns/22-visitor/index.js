@@ -1,17 +1,13 @@
 export class Visitor {
   constructor(compositeItem) {
     this.compositeItem = compositeItem;
-    this.init();
-  }
-
-  init () {
     this.addGetSize();
-
-    // todo: add implementation
   }
 
   addGetSize () {
-    // todo: add implementation
+    this.compositeItem.getSize = function (){
+      return this.children.length;
+    }
   }
 }
 
